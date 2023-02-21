@@ -41,7 +41,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""bab2fed6-be4b-4d16-b3f8-45f5fa9d9e70"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""NormalizeVector2,ScaleVector2,InvertVector2"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
@@ -114,9 +114,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""572f1a9a-fc71-410f-95fe-dc03f3d3c64b"",
-                    ""path"": ""<Pointer>/delta"",
+                    ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": ""ScaleVector2(x=15,y=15),InvertVector2(invertX=false)"",
+                    ""processors"": ""ScaleVector2(x=15,y=15),InvertVector2(invertX=false),NormalizeVector2"",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Look"",
                     ""isComposite"": false,

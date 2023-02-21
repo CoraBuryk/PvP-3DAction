@@ -2,16 +2,21 @@ using UnityEngine;
 using Mirror;
 
 public class NetManager : NetworkManager
-{ 
+{
     [SerializeField] private GameObject[] _spawnPoints;
 
     private bool _playerSpawned;
     private bool _playerConnected;
 
+    private GameObject player;
+
+    public string PlayerName { get; set; }
+
     public void OnCreateCharacter(NetworkConnectionToClient conn, PositionMessage message)
     {
-        GameObject go = Instantiate(playerPrefab, message.vector3, Quaternion.identity);
-        NetworkServer.AddPlayerForConnection(conn, go);
+        player = Instantiate(playerPrefab, message.vector3, Quaternion.identity);
+
+        NetworkServer.AddPlayerForConnection(conn, player);
     }
 
     public override void OnStartServer()
@@ -26,9 +31,11 @@ public class NetManager : NetworkManager
 
         Vector3 pos = _spawnPoints[num].transform.position;
 
-        PositionMessage m = new PositionMessage() { vector3 = pos};
+        PositionMessage m = new PositionMessage() { vector3 = pos };
         NetworkClient.Send(m);
+
         _playerSpawned = true;
+        PlayerName = "player " + (numPlayers + 1).ToString();
     }
 
     public override void OnClientConnect()
